@@ -14,7 +14,21 @@ func (a ById) Swap(i, j int) {
 	a[i], a[j] = a[j], a[i]
 }
 
-func List() []Todo {
-	sort.Sort(ById(Todos))
-	return Todos
+func List() ([]Todo, error) {
+	var todos []Todo
+	sqlStatement := `SELECT * from todo`
+	rows, err := DataBasePtr.Query(sqlStatement)
+	if err != nil {
+		return todos, err
+	}
+	for rows.Next() {
+		var todo Todo
+		if err := rows.Scan(&todo.Id, &todo.Titre, &todo.Description, &todo.DueDate);
+		err != nil {
+			return todos, err
+		}
+		todos = append(todos, todo)
+	}
+	sort.Sort(ById(todos))
+	return todos, nil
 }

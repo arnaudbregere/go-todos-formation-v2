@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"strconv"
 	"test/api"
 )
 
@@ -15,18 +14,17 @@ func Create(w http.ResponseWriter, req *http.Request) {
 	duedate := req.URL.Query()["duedate"]
 	EnableCors(&w)
 	if titre != nil && description != nil && duedate != nil {
-		strduedate, _ := strconv.Atoi(duedate[0])
-		api.Create(titre[0], description[0], strduedate)
+		api.Create(titre[0], description[0], duedate[0])
 
 		idCreate, err := api.CreateTodoInDb(titre[0], description[0], duedate[0])
 
 		fmt.Println("*****iDCREATE*****", idCreate, err)
 
-
-		fmt.Println("create", len(api.List()))
+		ListTodo, _ := api.List()
+		fmt.Println("create", len(ListTodo))
 		//io.WriteString(w, "Afficher ma Liste" )
 		//fmt.Println( api.List())
-		json.NewEncoder(w).Encode(api.List())
+		json.NewEncoder(w).Encode(ListTodo)
 	} else {
 		io.WriteString(w, "Il manque les paramètres" )
 	}

@@ -1,6 +1,6 @@
 package api
 
-func Create(titre string, description string, dueDate int) (error, int) {
+func Create(titre string, description string, dueDate string) (error, int) {
 	var myTodo Todo
 
 	myTodo.Titre = titre

@@ -4,7 +4,17 @@ type Todo struct {
 	Id int
 	Titre string
 	Description string
-	DueDate int
+	DueDate string
+}
+
+type TodoPost struct {
+	Titre string `json:"titre"`
+	Description string `json:"description"`
+	Duedate string `json:"duedate"`
+}
+
+type TodoParamsPost struct {
+	Params TodoPost `json:"params"`
 }
 
 

@@ -1,26 +1,11 @@
 package api
 
-import (
-	"fmt"
-	"strconv"
-)
+import "strconv"
 
-func DeleteTodo(id string) int{
-	index := -1
-	fmt.Println("id", id)
-	for i, todo := range Todos {
-
-		fmt.Println("todo", todo)
-		s := strconv.Itoa(todo.Id)
-		if s == id {
-			index = i
-		}
-	}
-
-	if index >= 0 {
-		Todos = append(Todos[:index], Todos[(index+1):]...)
-	}
-	return index
+func DeleteTodo(id string) error{
+	ID, _ := strconv.Atoi(id)
+	sqlStatement := `SELECT from todo where id=`
+	_, err := DataBasePtr.Query(sqlStatement)
+	println(err.Error())
+	return err
 }
-
-

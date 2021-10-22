@@ -11,12 +11,11 @@ func UpdateTodo(id string, titre string, description string, dueDate string) int
 	for i, todo := range Todos {
 		fmt.Println("todo", todo)
 		s := strconv.Itoa(todo.Id)
-		d, _ := strconv.Atoi(dueDate)
 		if s == id {
 			index = i
 			todo.Description = description
 			todo.Titre = titre
-			todo.DueDate = d
+			todo.DueDate = dueDate
 			Todos = append(Todos[:index], Todos[(index+1):]...)
 			Todos = append(Todos, todo)
 		}

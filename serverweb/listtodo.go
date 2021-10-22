@@ -8,7 +8,9 @@ import (
 )
 
 func ListTodo(w http.ResponseWriter, req *http.Request) {
-	fmt.Println("create", len(api.List()))
-	json.NewEncoder(w).Encode(api.List())
+	EnableCors(&w)
+	ListTodo, _ := api.List()
+	fmt.Println("create", len(ListTodo))
+	json.NewEncoder(w).Encode(ListTodo)
 	fmt.Println( api.List())
 }
