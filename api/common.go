@@ -17,4 +17,9 @@ type TodoParamsPost struct {
 	Params TodoPost `json:"params"`
 }
 
+type TodoReturnRequest struct {
+	CodeError string `json:"code_error"`
+	Params string `json:"params"`
+}
+
 

@@ -22,8 +22,6 @@ func Create(w http.ResponseWriter, req *http.Request) {
 
 		ListTodo, _ := api.List()
 		fmt.Println("create", len(ListTodo))
-		//io.WriteString(w, "Afficher ma Liste" )
-		//fmt.Println( api.List())
 		json.NewEncoder(w).Encode(ListTodo)
 	} else {
 		io.WriteString(w, "Il manque les paramètres" )

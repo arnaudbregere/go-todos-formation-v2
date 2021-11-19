@@ -2,8 +2,6 @@ package serverweb
 
 import (
 	"encoding/json"
-	"fmt"
-	"io"
 	"net/http"
 	"test/api"
 )
@@ -16,14 +14,17 @@ func Update(w http.ResponseWriter, req *http.Request) {
 	dueDate := req.URL.Query()["duedate"]
 
 	if len(id) > 0  {
-		ListTodo, _ := api.List()
-		fmt.Println("update", len(ListTodo))
-		//s := strconv.Itoa(id)
 		api.UpdateTodo(id[0], titre[0], description[0], dueDate[0])
-		//io.WriteString(w, "Mettre à jour ma Liste" )
-		//fmt.Println( api.List())
-		json.NewEncoder(w).Encode(ListTodo)
+		var myReturn api.TodoReturnRequest
+		myReturn.CodeError = "OK"
+		myReturn.Params = ""
+
+		json.NewEncoder(w).Encode(myReturn)
 	} else {
-		io.WriteString(w, "L'API n'a pas été mise à jour" )
+		var myReturn api.TodoReturnRequest
+		myReturn.CodeError = "ERREUR"
+		myReturn.Params = "Liste vide"
+
+		json.NewEncoder(w).Encode(myReturn)
 	}
 }

@@ -10,8 +10,6 @@ import (
 
 func CreateByPost(w http.ResponseWriter, req *http.Request) {
 	EnableCors(&w)
-
-	//decoder := json.NewDecoder(req.Body)
 	b, err := ioutil.ReadAll(req.Body)
 	defer req.Body.Close()
 	if err != nil {
@@ -27,16 +25,15 @@ func CreateByPost(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	api.Create(data.Params.Titre, data.Params.Description, data.Params.Duedate)
-
 	idCreate, err := api.CreateTodoInDb(data.Params.Titre, data.Params.Description, data.Params.Duedate)
 
 	fmt.Println("*****iDCREATE*****", idCreate, err)
 
-	ListTodo, _ := api.List()
-	fmt.Println("create", len(ListTodo))
+	var myReturn api.TodoReturnRequest
+	myReturn.CodeError = "OK"
+	myReturn.Params = ""
 
-	json.NewEncoder(w).Encode(ListTodo)
+	json.NewEncoder(w).Encode(myReturn)
 
 }
 

@@ -10,11 +10,9 @@ import (
 )
 
 func main() {
-    http.HandleFunc("/hello", serverweb.Accueil)
     http.HandleFunc("/create", serverweb.Create)
     http.HandleFunc("/createbypost", serverweb.CreateByPost)
     http.HandleFunc("/list", serverweb.ListTodo)
-    http.HandleFunc("/get", serverweb.GetTodo)
     http.HandleFunc("/del", serverweb.Delete)
     http.HandleFunc("/update", serverweb.Update)
     http.HandleFunc("/health", serverweb.Health)
@@ -45,5 +43,3 @@ func main() {
     erreur := http.ListenAndServe(":8090", nil)
     println(erreur.Error())
 }
-
-
