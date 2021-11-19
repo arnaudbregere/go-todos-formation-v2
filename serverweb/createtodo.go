@@ -14,7 +14,6 @@ func Create(w http.ResponseWriter, req *http.Request) {
 	duedate := req.URL.Query()["duedate"]
 	EnableCors(&w)
 	if titre != nil && description != nil && duedate != nil {
-		api.Create(titre[0], description[0], duedate[0])
 
 		idCreate, err := api.CreateTodoInDb(titre[0], description[0], duedate[0])
 
