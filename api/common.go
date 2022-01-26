@@ -1,16 +1,16 @@
 package api
 
 type Todo struct {
-	Id int
-	Titre string
+	Id          int
+	Titre       string
 	Description string
-	DueDate string
+	DueDate     string
 }
 
 type TodoPost struct {
-	Titre string `json:"titre"`
+	Titre       string `json:"titre"`
 	Description string `json:"description"`
-	Duedate string `json:"duedate"`
+	Duedate     string `json:"duedate"`
 }
 
 type TodoParamsPost struct {
@@ -19,7 +19,10 @@ type TodoParamsPost struct {
 
 type TodoReturnRequest struct {
 	CodeError string `json:"code_error"`
-	Params string `json:"params"`
+	Params    string `json:"params"`
 }
 
-
+type TextNLP struct {
+	TextBase           string `json:"text_base"`
+	TextNLPFingerPrint string `json:"text_nlp_finger_print"`
+}
