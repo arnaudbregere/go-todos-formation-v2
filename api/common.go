@@ -26,3 +26,10 @@ type TextNLP struct {
 	TextBase           string `json:"text_base"`
 	TextNLPFingerPrint string `json:"text_nlp_finger_print"`
 }
+
+type TextNLPInDb struct {
+	Id              int    `json:"id"`
+	TextBrut        string `json:"text_brut"`
+	TextFingerPrint string `json:"text_fingerprint"`
+	DateUpdate      string `json:"date_update"`
+}

@@ -17,6 +17,7 @@ func main() {
 	http.HandleFunc("/update", serverweb.Update)
 	http.HandleFunc("/health", serverweb.Health)
 	http.HandleFunc("/savetextnlp", serverweb.SaveTextNlp)
+	http.HandleFunc("/listtextnlp", serverweb.ListTextNlp)
 
 	const (
 		host     = "172.17.0.1"
